@@ -83,15 +83,15 @@ pub fn prepare_freethreaded_python() {
                 ffi::Py_InitializeEx(0);
 
                 // Make sure Py_Finalize will be called before exiting.
-                extern "C" fn finalize() {
-                    unsafe {
-                        if ffi::Py_IsInitialized() != 0 {
-                            ffi::PyGILState_Ensure();
-                            ffi::Py_Finalize();
-                        }
-                    }
-                }
-                libc::atexit(finalize);
+                // extern "C" fn finalize() {
+                //     unsafe {
+                //         if ffi::Py_IsInitialized() != 0 {
+                //             ffi::PyGILState_Ensure();
+                //             ffi::Py_Finalize();
+                //         }
+                //     }
+                // }
+                // libc::atexit(finalize);
             }
 
             // > Changed in version 3.7: This function is now called by Py_Initialize(), so you don’t have
